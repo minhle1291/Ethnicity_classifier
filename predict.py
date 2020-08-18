@@ -6,7 +6,7 @@ from os import listdir
 from os.path import isfile, join
 
 from scipy.ndimage import interpolation
-from scipy.misc import imread, imsave, imresize
+#from scipy.misc import imread, imsave, imresize
 import cv2
 import PIL
 from PIL import Image
@@ -92,6 +92,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--test_data_dir', default="~/cluster/", type=str)
     parser.add_argument('--labels_data_dir', default="None", type=str)
+    parser.add_argument('--data_dir', default="None", type=str)
     args = parser.parse_args()
 
     print("import models...")
@@ -106,5 +107,5 @@ if __name__ == "__main__":
     PADDING = 32
 
     DATA_DIR = args.test_data_dir
-    predictions = predict(model1,model2,DATA_DIR="./test_data",most_frequent_class = 4, new_size = 128)
+    predictions = predict(model1,model2,DATA_DIR=args.data_dir,most_frequent_class = 4, new_size = 128)
     print(predictions[1,:])
